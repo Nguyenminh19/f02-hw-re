@@ -2,7 +2,7 @@ package _04_loop_function;
 
 import java.util.Scanner;
 
-public class Ex08 {
+public class HW08 {
     /*
         Một người cần rút một số tiền T từ ngân hàng và muốn tổng số tờ ít nhất.
         Cho biết có các loại tiền mệnh giá 500, 200, 100, 20, 10, 5, 2 và 1.
