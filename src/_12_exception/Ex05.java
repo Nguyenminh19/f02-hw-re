@@ -9,7 +9,7 @@ public class Ex05 {
         System.out.println("Enter your age: ");
         int age = scanner.nextInt();
         if(age < 6) {
-            throw new InvalidAgeException("Your age must greater 6. Please check again");
+            throw new InvalidAgeException("Your age must greater 6.");
         }
         scanner.close();
         return age;
