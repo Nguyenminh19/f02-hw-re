@@ -1,0 +1,4 @@
+ST00001,nguyen minh,24,8.0
+ST00002,nguyen thi huyen,26,9.0
+ST00003,tran phuoc chung,18,22.0
+ST00004,ho le thanh tung,56,5.0
