@@ -10,9 +10,14 @@ public class Ex02 {
         HashMap<String, Integer> map = new HashMap<>();
         String[] words = paragraph.split(" ");
         for (String word : words) {
-            map.compute(word, (key, value) -> (value == null) ? 1 : value + 1);
+            String wordLowerCase = removeNonAlphanumeric(word).toLowerCase();
+            map.compute(wordLowerCase, (key, value) -> (value == null) ? 1 : value + 1);
         }
         return map;
+    }
+
+    public static String removeNonAlphanumeric(String input) {
+        return input.replaceAll("[^a-zA-Z0-9]", "");
     }
 
     public static void main(String[] args) {
