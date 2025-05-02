@@ -6,20 +6,19 @@ SELECT
 FROM
     users
         JOIN
-    carts ON carts.usersid = users.id
+    carts ON carts.users_id = users.id
         JOIN
     cart_items ON cart_items.cart_id = carts.id
         JOIN
-    products ON products.id = cart_items.id
-GROUP BY users.id , cart_items.quantity , products.priceorders;
+    products ON products.id = cart_items.products_id
+GROUP BY users.id
 
 -- Lấy ra danh sách người dùng đã từng có đơn hàng trên 50 nghìn.
 
-select users.id, total_amountproducts
+select distinct(users.id)
 from users
-join orders on users.id = orders.usersid
-where total_amount > 50000;
-
+join orders on users.id = orders.users_id
+where total_amount > 200;
 
 -- Lấy ra danh sách các sản phẩm đã hết hàng ở trong kho.
 SELECT 
@@ -29,20 +28,13 @@ FROM
 WHERE
     stock = 0;
 
-
 -- Lấy ra danh sách người dùng và số lượng mặt hàng người dùng đó đang có trong giỏ hàng.
 SELECT 
-    users.id, users.fullname, SUM(quantity)
+    users.id, users.fullname, SUM(quantity) AS Quantity
 FROM
     users
         JOIN
     carts ON users.id = carts.users_id
         JOIN
     cart_items ON carts.id = cart_items.cart_id
-GROUP BY users.id , users.fullname , quantity;
-
--- Tính tổng số tiền lãi sẽ thu được nếu như bán hết các sản phẩm còn lại.
-SELECT 
-    SUM((price - original_price) * stock)
-FROM
-    products
+GROUP BY users.id , users.fullname

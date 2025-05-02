@@ -23,18 +23,18 @@ CREATE TABLE products (
 -- Create the "carts" table (each cart belongs to a user)
 CREATE TABLE carts (
     id INT PRIMARY KEY,
-    usersid INT,
-    FOREIGN KEY (usersid) REFERENCES users(id)
+    users_id INT,
+    FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 -- Create the "orders" table (each order is placed by a user)
 CREATE TABLE orders (
     id INT PRIMARY KEY,
-    usersid INT,
+    users_id INT,
     description VARCHAR(500),
     status VARCHAR(50),
     total_amount DECIMAL(10,2),
-    FOREIGN KEY (usersid) REFERENCES users(id)
+    FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 -- Create the "cart_items" table (items in a cart reference both a cart and a product)
@@ -50,12 +50,12 @@ CREATE TABLE cart_items (
 -- Create the "orders_products" table (each order’s product details)
 CREATE TABLE orders_products (
     id INT PRIMARY KEY,
-    ordersid INT,
-    productsid INT,
+    orders_id INT,
+    products_id INT,
     original_price DECIMAL(10,2),
     price DECIMAL(10,2),
-    FOREIGN KEY (ordersid) REFERENCES orders(id),
-    FOREIGN KEY (productsid) REFERENCES products(id)
+    FOREIGN KEY (orders_id) REFERENCES orders(id),
+    FOREIGN KEY (products_id) REFERENCES products(id)
 );
 
 --------------------------------------------------
@@ -168,7 +168,7 @@ INSERT INTO products (id, name, description, price, stock, original_price, categ
 (50, 'Portable Projector', 'Compact projector ideal for home cinema and presentations', 249.99, 45, 279.99, 'Electronics');
 
 -- Insert 50 records into "carts"
-INSERT INTO carts (id, usersid) VALUES
+INSERT INTO carts (id, users_id) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
@@ -222,7 +222,7 @@ INSERT INTO carts (id, usersid) VALUES
 
 
 -- Insert 50 records into "orders"
-INSERT INTO orders (id, usersid, description, status, total_amount) VALUES
+INSERT INTO orders (id, users_id, description, status, total_amount) VALUES
 (1, 1, 'Order 1: Purchase of electronics accessories', 'pending', 115.00),
 (2, 2, 'Order 2: Purchase of home appliance items', 'completed', 130.00),
 (3, 3, 'Order 3: Order includes sports equipment and apparel', 'cancelled', 145.00),
@@ -328,7 +328,7 @@ INSERT INTO cart_items (id, quantity, cart_id, products_id) VALUES
   (50, 4, 50, 50);
 
 
-INSERT INTO orders_products (id, ordersid, productsid, original_price, price) VALUES
+INSERT INTO orders_products (id, orders_id, products_id, original_price, price) VALUES
   (1, 1, 1, 30.99, 25.99),
   (2, 2, 2, 89.99, 79.99),
   (3, 3, 3, 44.99, 39.99),
